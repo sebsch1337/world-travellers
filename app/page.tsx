@@ -6,7 +6,7 @@ import { MainTitle, SubTitle, Title } from "@/components/title";
 
 import { MarketingSwiper } from "./_components/marketing-swiper";
 
-export default function Home() {
+export default function HomePage() {
 	return (
 		<div className="h-dvh w-full sm:grid sm:place-items-center">
 			<IPhoneWrapper>
