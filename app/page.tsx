@@ -2,9 +2,9 @@ import { Button } from "@/components/button";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { IPhoneWrapper } from "@/components/iphone-wrapper";
+import { Box, BoxText, BoxTitle } from "@/components/box";
 import { MainTitle, SubTitle, Title } from "@/components/title";
-
-import { MarketingSwiper } from "./_components/marketing-swiper";
+import Link from "next/link";
 
 export default function HomePage() {
 	return (
@@ -15,16 +15,25 @@ export default function HomePage() {
 					<main className="flex-1 mx-4 flex flex-col justify-between relative">
 						<div>
 							<Title>
-								<MainTitle>tariff finder</MainTitle>
+								<MainTitle>CareAdvisor</MainTitle>
 								<SubTitle>Auslandskrankenversicherung</SubTitle>
 							</Title>
 
 							<div className="relative">
-								<MarketingSwiper />
+								<Box>
+									<BoxTitle>Digitale Beratung</BoxTitle>
+									<BoxText>
+										Der CareAdvisor ist Ihr digitaler Berater für Auslandskrankenversicherungen. Er hilft Ihnen, die passende
+										Versicherung für Ihre Reisepläne zu finden, sei es für Kurzreisen, langfristige Auslandsaufenthalte oder
+										Auswanderung. Schnell, einfach und maßgeschneidert – für umfassenden Schutz weltweit.
+									</BoxText>
+								</Box>
 							</div>
 						</div>
 
-						<Button>tariff finder starten</Button>
+						<Link href="/chat">
+							<Button>CareAdvisor starten</Button>
+						</Link>
 					</main>
 				</div>
 			</IPhoneWrapper>
