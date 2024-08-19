@@ -8,6 +8,24 @@ jest.mock("next/image", () => ({
 
 jest.mock("@/public/logo.svg", () => "logo.svg");
 
+jest.mock("openai", () => {
+	return {
+		__esModule: true,
+		default: jest.fn().mockImplementation(() => ({
+			beta: {
+				threads: {
+					runs: {
+						createAndPoll: jest.fn().mockResolvedValue({
+							id: "mocked-thread-id",
+							messages: [{ role: "assistant", content: "Mocked Assistant Response" }],
+						}),
+					},
+				},
+			},
+		})),
+	};
+});
+
 describe("Header Component", () => {
 	it("renders Header without menu", () => {
 		render(<Header isLandingPage={true} />);
