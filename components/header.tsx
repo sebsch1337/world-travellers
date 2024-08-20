@@ -13,9 +13,10 @@ import { Navigation } from "./navigation";
 
 interface HeaderProps {
 	isLandingPage?: boolean;
+	showNavButton?: boolean;
 }
 
-export const Header = ({ isLandingPage = false }: HeaderProps) => {
+export const Header = ({ isLandingPage = false, showNavButton = true }: HeaderProps) => {
 	const [showMenu, setShowMenu] = useState(false);
 
 	return (
@@ -31,9 +32,12 @@ export const Header = ({ isLandingPage = false }: HeaderProps) => {
 				/>
 			</Link>
 			<div className="relative flex justify-center items-center">
-				<button onClick={() => setShowMenu((state) => !state)}>
-					<IconMenu2 className={cn("mr-2 w-8 h-8", isLandingPage && "hidden")} />
-				</button>
+				{showNavButton && (
+					<button onClick={() => setShowMenu((state) => !state)}>
+						<IconMenu2 className={cn("mr-2 w-8 h-8", isLandingPage && "hidden")} />
+					</button>
+				)}
+
 				{showMenu && <Navigation setShowMenu={setShowMenu} />}
 			</div>
 		</header>
