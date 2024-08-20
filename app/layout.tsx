@@ -1,3 +1,5 @@
+import { Toaster } from "sonner";
+
 import type { Metadata, Viewport } from "next";
 
 import { Inter } from "next/font/google";
@@ -48,7 +50,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="de">
-			<body className={cn(inter.className, " text-night")}>{children}</body>
+			<body className={cn(inter.className, " text-night")}>
+				{children}
+				<Toaster richColors />
+			</body>
 		</html>
 	);
 }

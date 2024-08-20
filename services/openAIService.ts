@@ -2,10 +2,9 @@
 
 import OpenAI from "openai";
 
-const openai = new OpenAI();
-
 import type { Assistant, Thread, ThreadDeleted } from "openai/resources/beta/index.mjs";
 
+const openai = new OpenAI() || null;
 const assistantId = process.env.OPEN_AI_ASSISTANT;
 
 export const createAssistant = async (): Promise<Assistant | null> => {

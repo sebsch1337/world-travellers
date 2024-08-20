@@ -1,5 +1,5 @@
-import ReactMarkdown from "react-markdown";
 import { PulseLoader } from "react-spinners";
+import { useRemarkSync } from "react-remark";
 
 import { cn } from "@/utils/cn";
 
@@ -9,13 +9,15 @@ interface ChatBubbleProps {
 	text?: string;
 }
 export const ChatBubble = ({ isBot = false, isTyping = false, text = "" }: ChatBubbleProps) => {
+	const markdownContent = useRemarkSync(text);
+
 	return (
 		<div className={cn("w-full mt-4 flex", !isBot && "justify-end")}>
 			{isTyping ? (
 				<div
 					className={cn(
-						"flex justify-center items-center h-8 px-4 py-3 text-sm break-words hyphens-auto rounded-t-xl max-w-[90%]",
-						isBot ? "bg-celeste rounded-r-xl" : "bg-turquoise rounded-l-xl"
+						"flex justify-center items-center h-8 px-4 py-3 rounded-t-xl",
+						isBot ? "bg-celeste rounded-br-xl" : "bg-turquoise rounded-bl-xl"
 					)}
 				>
 					<PulseLoader
@@ -25,15 +27,15 @@ export const ChatBubble = ({ isBot = false, isTyping = false, text = "" }: ChatB
 					/>
 				</div>
 			) : (
-				<ReactMarkdown
+				<div
 					className={cn(
 						"inline-block px-4 py-3 text-sm break-words hyphens-auto rounded-t-xl max-w-[90%]",
-						isBot ? "bg-celeste rounded-r-xl" : "bg-turquoise rounded-l-xl",
+						isBot ? "bg-celeste rounded-br-xl" : "bg-turquoise rounded-bl-xl",
 						isTyping && "text-sm italic text-night/40 animate-pulse"
 					)}
 				>
-					{text}
-				</ReactMarkdown>
+					{markdownContent}
+				</div>
 			)}
 		</div>
 	);

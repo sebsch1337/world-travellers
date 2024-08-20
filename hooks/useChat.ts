@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { create } from "zustand";
 
 import { sendAssistantMessage } from "@/services/openAIService";
@@ -43,9 +44,10 @@ export const useChat = create<ChatState>()((set, get) => ({
 			try {
 				const responseText = await sendAssistantMessage(assistant, thread, text);
 				addMessage(responseText, "bot");
-				setisTyping(false);
-			} catch (error) {
-				console.error("Failed to send message:", error);
+			} catch (e) {
+				const error = e as Error;
+				toast.error(`Nachricht konnte nicht gesendet werden. (${error?.message})`);
+			} finally {
 				setisTyping(false);
 			}
 		}, 500);
