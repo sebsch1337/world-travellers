@@ -15,7 +15,7 @@ import { Button } from "@/components/button";
 
 export const ChatWrapper = () => {
 	const [inputValue, setInputValue] = useState<string>();
-	const { messages, addMessage, sendMessage, isTyping, setisTyping } = useChat();
+	const { messages, addMessage, clearMessages, sendMessage, isTyping, setisTyping } = useChat();
 	const { isInitiated, initThread, assistant, thread } = useOpenAI();
 	const chatFrameRef = useScrollToBottom(messages, isTyping);
 
@@ -25,15 +25,18 @@ export const ChatWrapper = () => {
 		const startChat = async () => {
 			setisTyping(true);
 			await initThread();
+
+			clearMessages();
 			addMessage(
 				"Hallo und herzlich willkommen! Möchten Sie den passenden Tarif für Ihren Auslandsaufenthalt finden oder haben Sie allgemeine Fragen zu den Tarifen der World Travellers? Ich helfe Ihnen gerne weiter!",
 				"bot"
 			);
+
 			setisTyping(false);
 		};
 
 		startChat();
-	}, [isInitiated, initThread, setisTyping, addMessage]);
+	}, [isInitiated, initThread, setisTyping, addMessage, clearMessages]);
 
 	const handleWelcomeChoice = (text: string) => {
 		if (!assistant || !thread) return;
