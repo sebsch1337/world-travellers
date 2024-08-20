@@ -47,7 +47,8 @@ export const useChat = create<ChatState>()((set, get) => ({
 				addMessage(responseText, "bot");
 			} catch (e) {
 				const error = e as Error;
-				toast.error(`Nachricht konnte nicht gesendet werden. (${error?.message})`);
+				if (error.message) console.error(error.message);
+				toast.error(`Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.`);
 			} finally {
 				setisTyping(false);
 			}
