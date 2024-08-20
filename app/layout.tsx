@@ -54,7 +54,10 @@ export default function RootLayout({
 		<html lang="de">
 			<body className={cn(inter.className, " text-night")}>
 				{children}
-				<Toaster richColors />
+				<Toaster
+					richColors
+					duration={8000}
+				/>
 			</body>
 		</html>
 	);
