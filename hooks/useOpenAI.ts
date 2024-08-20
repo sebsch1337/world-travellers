@@ -29,7 +29,7 @@ export const useOpenAI = create<Store>()((set, get) => ({
 			set(() => ({ thread: newThread }));
 			set(() => ({ isInitiated: true }));
 		} catch (e) {
-			toast.error(`Tarifberater macht gerade Pause. Bitte versuchen Sie es später erneut.`);
+			toast.error(`Der CareAdvisor ist gerade nicht erreichbar. Bitte versuchen Sie es in einigen Minuten erneut.`);
 		}
 	},
 

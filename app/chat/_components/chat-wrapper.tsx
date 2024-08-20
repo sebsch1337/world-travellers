@@ -104,14 +104,15 @@ export const ChatWrapper = () => {
 							name="message"
 							type="text"
 							placeholder="Nachricht eingeben..."
-							className="w-full h-12 bg-turquoise border-none rounded-full border-2 pl-5 pr-12 text-sm outline-none placeholder-night/40"
+							className="w-full h-12 bg-turquoise border-none rounded-full border-2 pl-5 pr-12 outline-none placeholder-night/40"
 							onChange={onChangeInput}
 							autoComplete="off"
 							autoCorrect="off"
+							spellCheck={false}
 						/>
 						<button
 							type="submit"
-							className="w-8 h-8 absolute right-4 self-center grid place-items-center "
+							className="w-8 h-8 absolute right-3 self-center grid place-items-center "
 							disabled={!!!inputValue || isTyping || !isInitiated}
 						>
 							<IconBrandTelegram

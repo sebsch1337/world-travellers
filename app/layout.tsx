@@ -41,6 +41,8 @@ export const viewport: Viewport = {
 		{ media: "(prefers-color-scheme: light)", color: "#B6F7EB" },
 		{ media: "(prefers-color-scheme: dark)", color: "#18DCB8" },
 	],
+	maximumScale: 1,
+	userScalable: false,
 };
 
 export default function RootLayout({
@@ -52,7 +54,10 @@ export default function RootLayout({
 		<html lang="de">
 			<body className={cn(inter.className, " text-night")}>
 				{children}
-				<Toaster richColors />
+				<Toaster
+					richColors
+					duration={8000}
+				/>
 			</body>
 		</html>
 	);
