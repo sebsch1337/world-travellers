@@ -43,6 +43,7 @@ export const useChat = create<ChatState>()((set, get) => ({
 
 			try {
 				const responseText = await sendAssistantMessage(assistant, thread, text);
+				if (!responseText) throw Error();
 				addMessage(responseText, "bot");
 			} catch (e) {
 				const error = e as Error;

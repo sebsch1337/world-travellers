@@ -31,6 +31,11 @@ export const sendAssistantMessage = async (assistant: Assistant, thread: Thread,
 		const messages: any = await openai.beta.threads.messages.list(run.thread_id);
 		return messages.data[0].content[0].text.value;
 	} else {
-		throw new Error();
+		console.error(run.last_error);
+		const error = new Error();
+		if (run.last_error) {
+			error.message = String(run.last_error);
+		}
+		throw error;
 	}
 };
