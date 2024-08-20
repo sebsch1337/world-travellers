@@ -4,7 +4,7 @@ import OpenAI from "openai";
 
 import type { Assistant, Thread, ThreadDeleted } from "openai/resources/beta/index.mjs";
 
-const openai = new OpenAI({ timeout: 20, maxRetries: 3 }) || null;
+const openai = new OpenAI({ timeout: 20000, maxRetries: 3 }) || null;
 const assistantId = process.env.OPEN_AI_ASSISTANT;
 
 export const createAssistant = async (): Promise<Assistant | null> => {
