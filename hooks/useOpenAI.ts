@@ -1,7 +1,9 @@
-import type { Assistant, Thread } from "openai/resources/beta/index.mjs";
+import { toast } from "sonner";
 import { create } from "zustand";
 
 import { createAssistant, createThread, deleteThread } from "@/services/openAIService";
+
+import type { Assistant, Thread } from "openai/resources/beta/index.mjs";
 
 type Store = {
 	assistant: Assistant | null;
@@ -17,15 +19,18 @@ export const useOpenAI = create<Store>()((set, get) => ({
 	isInitiated: false,
 
 	initThread: async () => {
-		const newAssistant = await createAssistant();
-		if (!newAssistant) return;
-		set(() => ({ assistant: newAssistant }));
+		try {
+			const newAssistant = await createAssistant();
+			const newThread = await createThread();
 
-		const newThread = await createThread();
-		if (!newThread) return;
-		set(() => ({ thread: newThread }));
+			if (!newAssistant || !newThread) throw new Error();
 
-		set(() => ({ isInitiated: true }));
+			set(() => ({ assistant: newAssistant }));
+			set(() => ({ thread: newThread }));
+			set(() => ({ isInitiated: true }));
+		} catch (e) {
+			toast.error(`Tarifberater macht gerade Pause. Bitte versuchen Sie es später erneut.`);
+		}
 	},
 
 	terminateThread: async () => {
