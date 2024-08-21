@@ -8,7 +8,7 @@ interface IPhoneWrapperProps {
 
 export const IPhoneWrapper = ({ children }: IPhoneWrapperProps) => {
 	return (
-		<div className="h-full flex flex-col justify-between sm:w-[369.29px] sm:h-[770px] sm:aspect-[369.29/770] sm:rounded-[14.67%] relative bg-azure pointer-events-none">
+		<div className="h-full flex flex-col justify-between sm:w-[369.29px] sm:h-[770px] sm:aspect-[369.29/770] sm:rounded-[14.67%] relative bg-azure">
 			<Image
 				src={iPhone}
 				alt="iPhone 15 Pro"
