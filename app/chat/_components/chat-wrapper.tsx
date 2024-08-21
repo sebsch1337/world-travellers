@@ -65,16 +65,10 @@ export const ChatWrapper = () => {
 				{messages?.map((message) => (
 					<ChatBubble
 						key={message.id}
-						isBot={message.sender === "bot"}
-						text={message.text}
+						message={message}
 					/>
 				))}
-				{isTyping && (
-					<ChatBubble
-						isBot={true}
-						isTyping
-					/>
-				)}
+				{isTyping && <ChatBubble isTyping />}
 			</section>
 
 			<div className="flex-grow"></div>
