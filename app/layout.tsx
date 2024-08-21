@@ -56,7 +56,8 @@ export default function RootLayout({
 				{children}
 				<Toaster
 					richColors
-					duration={8000}
+					duration={5000}
+					closeButton
 				/>
 			</body>
 		</html>
