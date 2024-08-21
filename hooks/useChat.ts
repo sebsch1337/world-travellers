@@ -11,7 +11,8 @@ import type { Thread } from "openai/resources/beta/index.mjs";
 interface ChatState {
 	messages: Message[];
 	isTyping: boolean;
-	addMessage: (message: string, sender: "user" | "bot") => void;
+	addMessage: (text: string, sender: "user" | "bot", state?: "success" | "failed") => string;
+	changeMessageState: (id: string, newMessageState: "success" | "failed") => void;
 	sendMessage: (assistant: Assistant, thread: Thread, text: string) => Promise<void>;
 	setisTyping: (isTyping: boolean) => void;
 	clearMessages: () => void;
@@ -26,28 +27,38 @@ export const useChat = create<ChatState>()((set, get) => ({
 			id: `${Date.now()}-${Math.random()}`,
 			text,
 			sender,
+			state: "success",
 		};
 
 		set((state) => ({
 			messages: [...state.messages, newMessage],
 		}));
+
+		return newMessage.id;
+	},
+
+	changeMessageState: (id, newMessageState) => {
+		set((state) => ({
+			messages: state.messages.map((message) => (message.id === id ? { ...message, state: newMessageState } : message)),
+		}));
 	},
 
 	sendMessage: async (assistant, thread, text) => {
-		const { addMessage, setisTyping } = get();
+		const { addMessage, setisTyping, changeMessageState } = get();
 
-		addMessage(text, "user");
+		const addedMessageId = addMessage(text, "user");
 
 		setTimeout(async () => {
 			setisTyping(true);
 
 			try {
 				const responseText = await sendAssistantMessage(assistant, thread, text);
-				if (!responseText) throw Error();
+				if (!responseText) throw new Error();
 				addMessage(responseText, "bot");
 			} catch (e) {
 				const error = e as Error;
 				if (error.message) console.error(error.message);
+				changeMessageState(addedMessageId, "failed");
 				toast.error(`Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.`);
 			} finally {
 				setisTyping(false);

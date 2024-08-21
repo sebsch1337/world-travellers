@@ -1,14 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { ChatWrapper } from "../chat-wrapper";
 
-jest.mock("react-markdown", () => {
-	const MockReactMarkdown = ({ children }: { children: React.ReactNode }) => {
-		return <div>{children}</div>;
-	};
-	MockReactMarkdown.displayName = "MockReactMarkdown";
-	return MockReactMarkdown;
-});
-
 jest.mock("openai", () => {
 	return {
 		__esModule: true,
