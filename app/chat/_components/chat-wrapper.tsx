@@ -29,7 +29,7 @@ export const ChatWrapper = () => {
 
 			clearMessages();
 			addMessage(
-				"Hallo und herzlich willkommen! Möchten Sie den passenden Tarif für Ihren Auslandsaufenthalt finden oder haben Sie allgemeine Fragen zu den Tarifen der World Travellers? Ich helfe Ihnen gerne weiter!",
+				"Hallo und herzlich willkommen! Möchtest du den passenden Tarif für deinen Auslandsaufenthalt finden oder hast du allgemeine Fragen zu den Tarifen der World Travellers? Ich helfe dir gerne weiter!",
 				"bot"
 			);
 

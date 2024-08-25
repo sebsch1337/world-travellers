@@ -12,14 +12,14 @@ export default function ActiveTravellersPage() {
 						<section>
 							<h1 className="font-bold text-lg mb-2">Active Travellers Auslandskrankenversicherung bis zu 3 Jahre</h1>
 							<p>
-								Die Active Travellers Auslandskrankenversicherung bietet Ihnen einen umfassenden Schutz für internationale
+								Die Active Travellers Auslandskrankenversicherung bietet dir einen umfassenden Schutz für internationale
 								Aufenthalte bis zu 3 Jahren, ideal für Abenteuerreisende und Langzeitaufenthalte.
 							</p>
 						</section>
 
 						<section>
 							<h2 className="text-md font-bold mb-2">Leistungen der Versicherung</h2>
-							<p>Unsere Versicherung umfasst zahlreiche medizinische Leistungen während Ihrer Reise, wie zum Beispiel:</p>
+							<p>Unsere Versicherung umfasst zahlreiche medizinische Leistungen während deiner Reise, wie zum Beispiel:</p>
 							<ul className="p-1 pl-2">
 								<li>- Ambulante und stationäre Behandlungen bei Erkrankung oder Unfall</li>
 								<li>- Notfallversorgung und Rücktransport ins Heimatland</li>
@@ -63,8 +63,8 @@ export default function ActiveTravellersPage() {
 						<section>
 							<h2 className="text-md font-bold mb-2">Optionale Zusatzleistungen</h2>
 							<p>
-								Ergänzen Sie Ihre Versicherung mit zusätzlichen Paketen wie Unfallversicherung und Haftpflichtversicherung, die
-								Sie bei der Buchung auswählen können.
+								Ergänze deine Versicherung mit zusätzlichen Paketen wie Unfallversicherung und Haftpflichtversicherung, die du bei
+								der Buchung auswählen kannst.
 							</p>
 						</section>
 					</article>

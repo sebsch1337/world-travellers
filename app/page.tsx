@@ -23,8 +23,8 @@ export default function HomePage() {
 								<Box>
 									<BoxTitle>Digitale Beratung</BoxTitle>
 									<BoxText>
-										Der CareAdvisor ist Ihr digitaler Berater für Auslandskrankenversicherungen. Er hilft Ihnen, die passende
-										Versicherung für Ihre Reisepläne zu finden, sei es für Kurzreisen, langfristige Auslandsaufenthalte oder
+										Der CareAdvisor ist dein digitaler Berater für Auslandskrankenversicherungen. Er hilft dir, die passende
+										Versicherung für deine Reisepläne zu finden, sei es für Kurzreisen, langfristige Auslandsaufenthalte oder
 										Auswanderung. Schnell, einfach und maßgeschneidert – für umfassenden Schutz weltweit.
 									</BoxText>
 								</Box>
