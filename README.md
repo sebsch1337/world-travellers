@@ -1,4 +1,4 @@
-<p align="center"><img width="300" alt="image" src="./public/og.png"></p>
+<p align="center"><img width="500" alt="image" src="./public/og.png"></p>
 
 <h3 align="center">World Travellers</h3>
 <p align="center">"Find the Perfect Travel Insurance with World Travellers CareAdvisor"</p>
@@ -31,7 +31,9 @@ This is a german health care advisor chatbot prototype, powered by openAI API. T
 
 ### Installation
 
-`npm install`
+```
+npm install
+```
 
 ### Create .env.local File
 
@@ -42,13 +44,15 @@ OPENAI_ASSISTANT_ID=''
 
 ### Run Dev Environment
 
-`npm run dev`
+```
+npm run dev
+```
 
 <a href="http://localhost:3000">http://localhost:3000</a>
 
 ## About
 
-All insurance plans and designs were crafted by me. All information is fictional. Title image is generated with Flux.
+All insurance plans and designs were crafted by me. All information is fictional. The title image is AI generated using Flux.
 
 I'm looking forward to start exciting projects with you as a 100% remote developer.
 
