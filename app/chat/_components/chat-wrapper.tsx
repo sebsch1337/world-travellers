@@ -1,29 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { IconBrandTelegram } from "@tabler/icons-react";
 
-import { cn } from "@/utils/cn";
-
 import { ChatBubble } from "./chat-bubble";
+import { Button } from "@/components/button";
 
 import { useChat } from "@/hooks/useChat";
 import { useOpenAI } from "@/hooks/useOpenAI";
 import { useScrollToBottom } from "@/hooks/useScrollToBottom";
-import { Button } from "@/components/button";
+
+import { cn } from "@/utils/cn";
 
 export const ChatWrapper = () => {
 	const [inputValue, setInputValue] = useState<string>();
-	const { messages, addMessage, clearMessages, sendMessage, isTyping, setisTyping } = useChat();
-	const { isInitiated, initThread, assistant, thread } = useOpenAI();
+	const { messages, addMessage, clearMessages, sendMessage, isTyping, inputDisabled, setInputDisabled, setIsTyping } = useChat();
+	const { isInitiated, initThread, assistantId, threadId } = useOpenAI();
 	const chatFrameRef = useScrollToBottom(messages, isTyping);
 
 	useEffect(() => {
 		if (isInitiated) return;
 
 		const startChat = async () => {
-			setisTyping(true);
+			setIsTyping(true);
+			setInputDisabled(true);
+
 			await initThread();
 
 			clearMessages();
@@ -32,15 +33,16 @@ export const ChatWrapper = () => {
 				"bot"
 			);
 
-			setisTyping(false);
+			setIsTyping(false);
+			setInputDisabled(false);
 		};
 
 		startChat();
-	}, [isInitiated, initThread, setisTyping, addMessage, clearMessages]);
+	}, [isInitiated, initThread, setIsTyping, addMessage, clearMessages, setInputDisabled]);
 
 	const handleWelcomeChoice = (text: string) => {
-		if (!assistant || !thread) return;
-		sendMessage(assistant, thread, text);
+		if (!assistantId || !threadId) return;
+		sendMessage(threadId, text);
 	};
 
 	const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,10 +52,10 @@ export const ChatWrapper = () => {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (!inputValue || !assistant || !thread) return;
+		if (!inputValue || !assistantId || !threadId) return;
 		setInputValue("");
 		e.currentTarget.reset();
-		sendMessage(assistant, thread, inputValue);
+		sendMessage(threadId, inputValue);
 	};
 
 	return (
@@ -81,13 +83,13 @@ export const ChatWrapper = () => {
 					<div className="w-full">
 						<Button
 							onClick={() => handleWelcomeChoice("Tarif finden")}
-							disabled={!isInitiated}
+							disabled={inputDisabled}
 						>
 							Tarif finden
 						</Button>
 						<Button
 							onClick={() => handleWelcomeChoice("Allgemeine Fragen")}
-							disabled={!isInitiated}
+							disabled={inputDisabled}
 						>
 							Allgemeine Fragen
 						</Button>
@@ -107,12 +109,12 @@ export const ChatWrapper = () => {
 						<button
 							type="submit"
 							className="w-8 h-8 absolute right-3 self-center grid place-items-center "
-							disabled={!!!inputValue || isTyping || !isInitiated}
+							disabled={!!!inputValue || inputDisabled}
 						>
 							<IconBrandTelegram
 								className={cn(
 									"transition-all duration-300 w-6 h-6",
-									!!inputValue && !isTyping && isInitiated ? "stroke-night" : "stroke-night/30"
+									!!inputValue && !inputDisabled ? "stroke-night" : "stroke-night/30"
 								)}
 							/>
 						</button>
