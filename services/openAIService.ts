@@ -1,11 +1,10 @@
 "use server";
 
-import OpenAI from "openai";
+import { openai } from "@/app/openai";
+import { assistantId } from "@/app/assistant-config";
 
 import type { Assistant, Thread, ThreadDeleted } from "openai/resources/beta/index.mjs";
-
-const openai = new OpenAI() || null;
-const assistantId = process.env.OPEN_AI_ASSISTANT;
+import { AssistantStream } from "openai/lib/AssistantStream.mjs";
 
 export const createAssistant = async (): Promise<Assistant | null> => {
 	if (!assistantId) return null;
@@ -15,27 +14,21 @@ export const createAssistant = async (): Promise<Assistant | null> => {
 
 export const createThread = async (): Promise<Thread> => await openai.beta.threads.create();
 
-export const deleteThread = async (thread: Thread): Promise<ThreadDeleted> => await openai.beta.threads.del(thread.id);
+export const deleteThread = async (threadId: string): Promise<ThreadDeleted> => await openai.beta.threads.del(threadId);
 
-export const sendAssistantMessage = async (assistant: Assistant, thread: Thread, newMessage: string): Promise<string> => {
-	const message = await openai.beta.threads.messages.create(thread.id, {
+export const streamAssistantMessage = async (
+	assistantId: string,
+	threadId: string,
+	newMessage: string
+): Promise<AssistantStream> => {
+	await openai.beta.threads.messages.create(threadId, {
 		role: "user",
 		content: newMessage,
 	});
 
-	let run = await openai.beta.threads.runs.createAndPoll(thread.id, {
-		assistant_id: assistant.id,
+	const stream = openai.beta.threads.runs.stream(threadId, {
+		assistant_id: assistantId,
 	});
 
-	if (run.status === "completed") {
-		const messages: any = await openai.beta.threads.messages.list(run.thread_id);
-		return messages.data[0].content[0].text.value;
-	} else {
-		console.error(run.last_error);
-		const error = new Error();
-		if (run.last_error) {
-			error.message = String(run.last_error);
-		}
-		throw error;
-	}
+	return stream;
 };
