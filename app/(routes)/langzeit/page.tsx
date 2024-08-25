@@ -19,7 +19,7 @@ export default function LangzeitPage() {
 
 						<section>
 							<h2 className="text-md font-bold mb-2">Versicherungsschutz</h2>
-							<p>Unsere Versicherung deckt eine Vielzahl von medizinischen Behandlungen während Ihrer Reise, wie etwa:</p>
+							<p>Unsere Versicherung deckt eine Vielzahl von medizinischen Behandlungen während deiner Reise, wie etwa:</p>
 							<ul className="p-1 pl-2">
 								<li>- Ambulante und stationäre Behandlungen im Krankenhaus bei Krankheit oder Unfall</li>
 								<li>- Schwangerschaftsvorsorge und Geburt in der Premium-Variante</li>
@@ -36,7 +36,7 @@ export default function LangzeitPage() {
 						<section>
 							<h2 className="text-md font-bold mb-2">Tarifoptionen</h2>
 							<p>
-								Sie können zwischen der &quot;Basic&quot;-Variante mit einem Selbstbehalt von 100 € je Schadensfall und der
+								Du kannst zwischen der &quot;Basic&quot;-Variante mit einem Selbstbehalt von 100 € je Schadensfall und der
 								&quot;Premium&quot;-Variante ohne Selbstbehalt wählen, die auch Vorsorgeuntersuchungen und unbegrenzte
 								Zahnbehandlungen beinhaltet.
 							</p>
@@ -70,7 +70,7 @@ export default function LangzeitPage() {
 						<section>
 							<h2 className="text-md font-bold mb-2">Zusatzoptionen</h2>
 							<p>
-								Bei der Buchung können Sie optional zusätzliche Versicherungspakete wie Reiseunfall- und
+								Bei der Buchung kannst du optional zusätzliche Versicherungspakete wie Reiseunfall- und
 								Reisehaftpflichtversicherungen hinzufügen.
 							</p>
 						</section>

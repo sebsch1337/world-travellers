@@ -98,7 +98,7 @@ export const useChat = create<ChatState>()((set, get) => ({
 				if (error.message) console.error(error.message);
 				changeMessageState(addedMessageId, "failed");
 				setInputDisabled(false);
-				toast.error(`Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.`);
+				toast.error(`Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.`);
 			}
 		}, 500);
 	},
