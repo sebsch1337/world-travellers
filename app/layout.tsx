@@ -18,8 +18,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "World Travellers",
 		type: "website",
-		description:
-			"Der World Travellers CareAdvisor hilft Ihnen, die passende Versicherung für Ihre Reisepläne zu finden, sei es für Kurzreisen, langfristige Auslandsaufenthalte oder Auswanderung.",
+		description: "Der World Travellers CareAdvisor hilft dir, die passende Versicherung für deine Reisepläne zu finden.",
 		siteName: "World Travellers",
 		locale: "de_DE",
 		images: [
