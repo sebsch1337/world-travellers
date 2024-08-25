@@ -1,4 +1,4 @@
-<p align="center"><img width="150" alt="image" src="./public/logo.svg"></p>
+<p align="center"><img width="300" alt="image" src="./public/og.png"></p>
 
 <h3 align="center">World Travellers</h3>
 <p align="center">"Find the Perfect Travel Insurance with World Travellers CareAdvisor"</p>
@@ -48,7 +48,7 @@ OPENAI_ASSISTANT_ID=''
 
 ## About
 
-All insurance plans and designs were crafted by me. All information is fictional.
+All insurance plans and designs were crafted by me. All information is fictional. Title image is generated with Flux.
 
 I'm looking forward to start exciting projects with you as a 100% remote developer.
 
