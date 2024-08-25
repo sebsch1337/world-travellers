@@ -3,19 +3,17 @@ import { create } from "zustand";
 
 import { createAssistant, createThread, deleteThread } from "@/services/openAIService";
 
-import type { Assistant, Thread } from "openai/resources/beta/index.mjs";
-
 type Store = {
-	assistant: Assistant | null;
-	thread: Thread | null;
+	assistantId: string | null;
+	threadId: string | null;
 	isInitiated: boolean;
 	initThread: () => Promise<void>;
 	terminateThread: () => Promise<void>;
 };
 
 export const useOpenAI = create<Store>()((set, get) => ({
-	assistant: null,
-	thread: null,
+	assistantId: null,
+	threadId: null,
 	isInitiated: false,
 
 	initThread: async () => {
@@ -23,10 +21,10 @@ export const useOpenAI = create<Store>()((set, get) => ({
 			const newAssistant = await createAssistant();
 			const newThread = await createThread();
 
-			if (!newAssistant || !newThread) throw new Error();
+			if (!newAssistant?.id || !newThread?.id) throw new Error();
 
-			set(() => ({ assistant: newAssistant }));
-			set(() => ({ thread: newThread }));
+			set(() => ({ assistantId: newAssistant.id }));
+			set(() => ({ threadId: newThread.id }));
 			set(() => ({ isInitiated: true }));
 		} catch (e) {
 			toast.error(`Der CareAdvisor ist gerade nicht erreichbar. Bitte versuchen Sie es in einigen Minuten erneut.`);
@@ -34,10 +32,10 @@ export const useOpenAI = create<Store>()((set, get) => ({
 	},
 
 	terminateThread: async () => {
-		const { thread } = get();
-		if (!thread) return;
+		const { threadId } = get();
+		if (!threadId) return;
 
-		await deleteThread(thread);
+		await deleteThread(threadId);
 		set(() => ({ isInitiated: false }));
 	},
 }));

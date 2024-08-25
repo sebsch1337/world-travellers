@@ -28,7 +28,7 @@ jest.mock("@/hooks/useChat", () => ({
 		addMessage: jest.fn(),
 		sendMessage: jest.fn(),
 		isTyping: false,
-		setisTyping: jest.fn(),
+		setIsTyping: jest.fn(),
 	})),
 }));
 
